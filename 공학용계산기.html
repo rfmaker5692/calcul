@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 70px;
+            height: 40px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button.operator {
+            background-color: #f0f0f0;
+        }
+
+        button.number {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        button.special {
+            background-color: #2196f3;
+            color: #fff;
+        }
+
+        button.equals {
+            background-color: #ff9800;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Engineering Calculator</h1>
+        <input type="text" id="result" disabled>
+        <br>
+        <button class="special" onclick="clearResult()">C</button>
+        <button class="operator" onclick="appendToResult('+')">+</button>
+        <button class="operator" onclick="appendToResult('-')">-</button>
+        <button class="operator" onclick="appendToResult('*')">*</button>
+        <button class="operator" onclick="appendToResult('/')">/</button>
+        <br>
+        <button class="special" onclick="appendToResult('Math.sin(')">sin</button>
+        <button class="special" onclick="appendToResult('Math.cos(')">cos</button>
+        <button class="special" onclick="appendToResult('Math.tan(')">tan</button>
+        <button class="special" onclick="appendToResult('Math.sqrt(')">√</button>
+        <button class="equals" onclick="calculate()">=</button>
+    </div>
+
+    <script>
+        function appendToResult(value) {
+            document.getElementById("result").value += value;
+        }
+
+        function clearResult() {
+            document.getElementById("result").value = "";
+        }
+
+        function calculate() {
+            try {
+                var result = eval(document.getElementById("result").value);
+                document.getElementById("result").value = result;
+            } catch (error) {
+                alert("Invalid expression!");
+            }
+        }
+    </script>
+</body>
+</html>
